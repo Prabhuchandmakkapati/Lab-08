@@ -1,0 +1,332 @@
+/**
+
+* This class represents a queue where the
+
+* elements are stored as a List. It provides
+
+* methods to add and remove elements from
+
+* the queue.
+
+*/
+
+import javax.naming.LinkLoopException;
+
+public class LinkedQ {
+
+      // nested class to define linkedQ node
+
+      private class Node {
+
+            int value;
+
+            Node next;
+
+            /**
+
+            * Constructor
+
+            *
+
+            * @param value
+
+            *            - Value of th enode
+
+            * @param next
+
+            *            - next node
+
+            */
+
+            public Node(int value, Node next) {
+
+                  this.value = value;
+
+                  this.next = next;
+
+            }
+
+            /**
+
+            * Returns the value
+
+            */
+
+            public int getValue() {
+
+                  return value;
+
+            }
+
+            /**
+
+            * Returns the next node
+
+            */
+
+            public Node getNext() {
+
+                  return next;
+
+            }
+
+            /**
+
+            * Sets the value
+
+            *
+
+            * @param value
+
+            *            - the value to set
+
+            */
+
+            public void setValue(int value) {
+
+                  this.value = value;
+
+            }
+
+            /**
+
+            * Sets the next node
+
+            *
+
+            * @param next
+
+            *            - the next node to set
+
+            */
+
+            public void setNext(Node next) {
+
+                  this.next = next;
+
+            }
+
+      }
+
+      // Instance variables
+
+      private Node front;
+
+      private Node rear;
+
+      private int count;
+
+      /**
+
+      * Default constructor
+
+      */
+
+      public LinkedQ() {
+
+            this.front = null;
+
+            this.rear = null;
+
+            this.count = 0;
+
+      }
+
+      /**
+
+      * Adds a value to the queue
+
+      *
+
+      * @param value
+
+      *            - value to be added
+
+      * @return - Returns the value added
+
+      */
+
+      public int enqueue(int value) {
+
+            // Create a new node
+
+            Node newNode = new Node(value, null);
+
+           
+
+            // Check if queue is empty
+
+            if (size() == 0) {
+
+                  // Set new node as front
+
+                  this.front = newNode;
+
+                 
+
+            } else {
+
+                  // Set rear.next as newNode
+
+                  this.rear.setNext(newNode);
+
+            }
+
+           
+
+            // Set newNode as rear
+
+            this.rear = newNode;
+
+           
+
+            // Increment count
+
+            this.count += 1;
+
+           
+
+            return value;
+
+      }
+
+      // Remove value from the beginning of the list for demonstrating behaviour
+
+      // of stack
+
+      public int dequeue() throws LinkLoopException {
+
+            // If queue is empty
+
+            if (size() == 0) {
+
+                  throw new LinkLoopException();
+
+            }
+
+           
+
+            // Get the front element's value
+
+            int value = this.front.value;
+
+           
+
+            // Set front.next as the new front
+
+            this.front = this.front.getNext();
+
+           
+
+            // Decrement count
+
+            this.count -= 1;
+
+           
+
+            // Check whether after dequeue the queue is empty
+
+            if (size() == 0)
+
+                  this.rear = null; // Set rear as null
+
+           
+
+            return value;
+
+      }
+
+      /**
+
+      * Returns the number of elements in the queue
+
+      */
+
+      private int size() {
+
+            return this.count;
+
+      }
+
+      /**
+
+      * Displays the elements of the queue
+
+      */
+
+      public void printList() {
+
+            // Get the front node
+
+            Node node = this.front;
+
+           
+
+            // Display nodes
+
+            while(node != null) {
+
+                  System.out.print(node.getValue() + " ");
+
+                  node = node.getNext();
+
+            }
+
+           
+
+            System.out.println();
+
+      }
+
+}
+
+/**
+
+* This class acts as a Driver for the LinkedQ class.
+
+*/
+
+import javax.naming.LinkLoopException;
+
+public class LinkedQDriver {
+
+      public static void main(String args[]) throws LinkLoopException {
+
+            LinkedQ linkedQ = new LinkedQ();
+
+            System.out.println("enqueue on: " + linkedQ.enqueue(1) + ", ");
+
+            System.out.println("enqueue on: " + linkedQ.enqueue(7) + ", ");
+
+            System.out.println("enqueue on: " + linkedQ.enqueue(3) + ", ");
+
+            System.out.println("enqueue on: " + linkedQ.enqueue(4) + ", ");
+
+            System.out.println("enqueue on: " + linkedQ.enqueue(9) + ", ");
+
+            System.out.println("enqueue on: " + linkedQ.enqueue(2));
+
+           
+
+            // Display queue
+
+            System.out.print("Queue: ");
+
+            linkedQ.printList();
+
+            System.out.println("dequeue Off: " + linkedQ.dequeue());
+
+            System.out.println("dequeue Off: " + linkedQ.dequeue());
+
+            System.out.println("dequeue Off: " + linkedQ.dequeue());
+
+            System.out.println("dequeue Off: " + linkedQ.dequeue());
+
+            System.out.println("dequeue Off: " + linkedQ.dequeue());
+
+            System.out.println("dequeue Off: " + linkedQ.dequeue());
+
+      }
+
+}
+
