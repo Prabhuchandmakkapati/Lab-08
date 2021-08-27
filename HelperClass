@@ -1,0 +1,62 @@
+Helper Class
+
+public class QueueHelper {
+
+public static void main(String[] args) {
+
+System.out.println("========================== Linked Queue ============================================");
+
+LinkedQueue q = new LinkedQueue();
+
+q.enqueue(10);
+
+q.enqueue(20);
+
+q.enqueue(30);
+
+q.enqueue(40);
+
+q.enqueue(50);
+
+q.enqueue(60);
+
+q.removeMiddle();
+
+q.dequeue();
+
+q.dequeue();
+
+System.out.println("========================== Array Queue ============================================");
+
+ArrayQueue queue = new ArrayQueue(4);
+
+queue.enqueue(10);
+
+queue.dequeue();
+
+queue.enqueue(20);
+
+queue.enqueue(30);
+
+queue.enqueue(40);
+
+queue.dequeue();
+
+queue.dequeue();
+
+queue.enqueue(50);
+
+queue.dequeue();
+
+queue.enqueue(60);
+
+queue.enqueue(70);
+
+queue.enqueue(80);
+
+queue.enqueue(90);
+
+}
+
+}
+
